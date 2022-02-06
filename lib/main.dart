@@ -43,27 +43,10 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     return Scaffold(
       body: Center(
         child: TextField(
+          decoration: InputDecoration(
+            labelText: '1.',
+          ),
           controller: _controller,
-          onSubmitted: (String value) async {
-            await showDialog<void>(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text('Thanks!'),
-                  content: Text(
-                      'You typed "$value", which has length ${value.characters.length}.'),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('OK'),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
         ),
       ),
     );
