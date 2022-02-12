@@ -11,19 +11,39 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: _title,
-      home: MyStatefulWidget(),
+      home: TextEditField(),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
+// The visble line number for the line of text.
+class LineNumber extends StatefulWidget {
+  const LineNumber({Key? key}) : super(key: key);
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  State<LineNumber> createState() => _LineNumber();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _LineNumber extends State<LineNumber> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Text('Hoi'),
+      ),
+    );
+  }
+}
+
+// The Field in which the user edits their content.
+class TextEditField extends StatefulWidget {
+  const TextEditField({Key? key}) : super(key: key);
+
+  @override
+  State<TextEditField> createState() => _TextEditField();
+}
+
+class _TextEditField extends State<TextEditField> {
   late TextEditingController _controller;
 
   @override
@@ -41,14 +61,20 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+        body: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+      SizedBox(
+        height: 10,
+        width: 10,
         child: TextField(
-          decoration: InputDecoration(
-            labelText: '1.',
-          ),
+          cursorHeight: 10,
+          cursorWidth: 10,
+          maxLength: 10,
           controller: _controller,
         ),
       ),
-    );
+      Text('Hoi'),
+      Text('Hoi'),
+    ] //Children
+            ));
   }
 }
