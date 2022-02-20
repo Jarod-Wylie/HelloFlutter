@@ -58,30 +58,34 @@ class _TextEditField extends State<TextEditField> {
     super.dispose();
   }
 
+  int itemCount = 9;
+  int incrementer = 1;
+  extendList(itemCount) {
+    itemCount++;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Empty List Test')),
-        body: TextField(
-            controller: _controller,
-            onSubmitted: (String value) async {
-              await showDialog<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                      title: const Text('Thanks!'),
-                      content: Text(
-                          'You typed "$value", which has length ${value.characters.length}.'),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('OK'),
-                        ),
-                      ]);
-                },
-              );
-            }));
+      appBar: AppBar(title: const Text('Empty List Test')),
+      body: itemCount > 0
+          ? ListView.builder(
+              itemCount: itemCount,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: index.toString(),
+                    ),
+                    textInputAction: extendList(itemCount),
+                    minLines: 2,
+                    maxLines: 2,
+                  ),
+                );
+              },
+            )
+          : const Center(child: Text('No items')),
+    );
   }
 }
