@@ -66,26 +66,27 @@ class _TextEditField extends State<TextEditField> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Empty List Test')),
-      body: itemCount > 0
-          ? ListView.builder(
-              itemCount: itemCount,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  title: TextField(
+    return Container(
+      color: Colors.blueGrey,
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 150),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        Expanded(
+            child: Scaffold(
+                appBar: AppBar(title: const Text('Empty List Test')),
+                body: SizedBox(
+                  height: 2000,
+                  width: 2000,
+                  child: TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: index.toString(),
+                      labelText: itemCount.toString(),
                     ),
                     textInputAction: extendList(itemCount),
-                    minLines: 2,
-                    maxLines: 2,
+                    minLines: 1,
+                    maxLines: 1,
                   ),
-                );
-              },
-            )
-          : const Center(child: Text('No items')),
+                )))
+      ]),
     );
   }
 }
