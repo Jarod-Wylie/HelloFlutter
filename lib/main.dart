@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'inherited_counter.dart';
 
 void main() => runApp(const MyApp());
 
@@ -52,6 +53,18 @@ class _TextEditField extends State<TextEditField> {
     _controller = TextEditingController();
   }
 
+  int sum = 1;
+  handleKey(RawKeyEvent key) {
+    String _keyCode;
+    _keyCode = key.logicalKey.toString(); //keycode of key event (66 is return)
+
+    sum++;
+    print("why does this run twice $_keyCode");
+    print('Pressed:' + sum.toString());
+  }
+
+  FocusNode _textNode = new FocusNode();
+
   @override
   void dispose() {
     _controller.dispose();
@@ -66,26 +79,33 @@ class _TextEditField extends State<TextEditField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blueGrey,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 150),
+    return InheritedWrapper(
+      // color: Colors.blueGrey,
+      // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 150),
+
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        Expanded(
-            child: Scaffold(
-                appBar: AppBar(title: const Text('Empty List Test')),
-                body: SizedBox(
-                  height: 2000,
-                  width: 2000,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: itemCount.toString(),
-                    ),
-                    textInputAction: extendList(itemCount),
-                    minLines: 1,
-                    maxLines: 1,
-                  ),
-                )))
+        WidgetA(),
+        WidgetTextField(),
+        // Expanded(
+        //     child: RawKeyboardListener(
+        //         focusNode: _textNode,
+        //         onKey: (key) => handleKey(key),
+        //         child: Scaffold(
+        //             appBar: AppBar(title: const Text('Empty List Test')),
+        //             body: SizedBox(
+        //               height: 2000,
+        //               width: 2000,
+        //               child: TextField(
+        //                 decoration: InputDecoration(
+        //                   border: OutlineInputBorder(),
+        //                   labelText: itemCount.toString(),
+        //                 ),
+        //                 textInputAction: extendList(itemCount),
+        //                 minLines: sum,
+        //                 maxLines: sum,
+        //               ),
+        //             )))),
+        WidgetA(),
       ]),
     );
   }
