@@ -42,20 +42,21 @@ class WidgetTextField extends StatelessWidget {
     return Expanded(
         child: RawKeyboardListener(
             focusNode: _textNode,
+            // onKey: onPressed(),
             child: Scaffold(
-                appBar: AppBar(title: const Text('Empty List Test')),
+                // appBar: AppBar(title: const Text('Empty List Test')),
                 body: SizedBox(
-                  height: 2000,
-                  width: 2000,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: '${state.counter}',
-                    ),
-                    minLines: state.counter,
-                    maxLines: state.counter,
-                  ),
-                ))));
+              height: 2000,
+              width: 2000,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: '${state.counter}',
+                ),
+                minLines: state.counter,
+                maxLines: state.counter,
+              ),
+            ))));
   }
 }
 
