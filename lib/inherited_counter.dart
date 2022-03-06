@@ -56,8 +56,8 @@ class WidgetTextField extends StatelessWidget {
                     RawKeyboardListener(
       autofocus: true,
       focusNode: _textNode,
-      onKey: (event) {
-        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+      onKey: (eventData) {
+        if (eventData.isKeyPressed(LogicalKeyboardKey.enter)) {
           state.incrementCounter();
           // printMe('hoi');
         }
