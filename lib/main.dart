@@ -84,27 +84,8 @@ class _TextEditField extends State<TextEditField> {
       // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 150),
 
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        WidgetA(),
+        //Text('a'),
         WidgetTextField(),
-        // Expanded(
-        //     child: RawKeyboardListener(
-        //         focusNode: _textNode,
-        //         onKey: (key) => handleKey(key),
-        //         child: Scaffold(
-        //             appBar: AppBar(title: const Text('Empty List Test')),
-        //             body: SizedBox(
-        //               height: 2000,
-        //               width: 2000,
-        //               child: TextField(
-        //                 decoration: InputDecoration(
-        //                   border: OutlineInputBorder(),
-        //                   labelText: itemCount.toString(),
-        //                 ),
-        //                 textInputAction: extendList(itemCount),
-        //                 minLines: sum,
-        //                 maxLines: sum,
-        //               ),
-        //             )))),
         WidgetA(),
       ]),
     );

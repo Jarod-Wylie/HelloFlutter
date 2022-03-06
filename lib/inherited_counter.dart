@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class InheritedWrapper extends StatefulWidget {
   final Widget child;
@@ -40,23 +41,40 @@ class WidgetTextField extends StatelessWidget {
     final InheritedWrapperState state = InheritedWrapper.of(context);
     print("Text Field Updated");
     return Expanded(
-        child: RawKeyboardListener(
-            focusNode: _textNode,
-            // onKey: onPressed(),
-            child: Scaffold(
+        child:
+            // KeyboardListener(
+            //     focusNode: _textNode,
+            //     onKeyEvent: printMe(),
+            //     child:
+            Scaffold(
                 // appBar: AppBar(title: const Text('Empty List Test')),
-                body: SizedBox(
-              height: 2000,
-              width: 2000,
-              child: TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: '${state.counter}',
-                ),
-                minLines: state.counter,
-                maxLines: state.counter,
-              ),
-            ))));
+                body:
+                    //   SizedBox(
+                    // height: 2000,
+                    // width: 2000,
+                    // child:
+                    RawKeyboardListener(
+      autofocus: true,
+      focusNode: _textNode,
+      onKey: (event) {
+        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+          state.incrementCounter();
+          // printMe('hoi');
+        }
+      },
+      child: TextField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: '${state.counter}',
+        ),
+        minLines: state.counter + 1,
+        maxLines: state.counter + 1,
+      ),
+    )));
+  }
+
+  printMe(hoi) {
+    print(hoi);
   }
 }
 
@@ -98,6 +116,7 @@ class _WidgetAState extends State<WidgetA> {
 
   onPressed() {
     InheritedWrapperState wrapper = InheritedWrapper.of(context);
+    print('onpressed');
     wrapper.incrementCounter();
   }
 }
