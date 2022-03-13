@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,6 +19,9 @@ class InheritedWrapper extends StatefulWidget {
 
 class InheritedWrapperState extends State<InheritedWrapper> {
   int counter = 1;
+  final myController = TextEditingController();
+  final blueStyle = Colors.blue;
+  var textStyle = Colors.red;
 
   void incrementCounter() {
     setState(() {
@@ -57,12 +62,22 @@ class WidgetTextField extends StatelessWidget {
       autofocus: true,
       focusNode: _textNode,
       onKey: (eventData) {
+        if (eventData.isKeyPressed(LogicalKeyboardKey.controlLeft)) {
+          if (eventData.isKeyPressed(LogicalKeyboardKey.slash)) {
+            state.incrementCounter();
+            state.textStyle = Colors.blue;
+            state.myController.text = state.myController.text;
+            print(state.myController.text);
+          }
+        }
         if (eventData.isKeyPressed(LogicalKeyboardKey.enter)) {
           state.incrementCounter();
           // printMe('hoi');
         }
       },
       child: TextField(
+        controller: state.myController,
+        style: TextStyle(color: state.textStyle),
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           labelText: '${state.counter}',
@@ -77,29 +92,6 @@ class WidgetTextField extends StatelessWidget {
     print(hoi);
   }
 }
-
-// class _widgetTextFieldState extends State<WidgetTextField> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Expanded(
-//         child: RawKeyboardListener(
-//             focusNode: _textNode,
-//             child: Scaffold(
-//                 appBar: AppBar(title: const Text('Empty List Test')),
-//                 body: SizedBox(
-//                   height: 2000,
-//                   width: 2000,
-//                   child: TextField(
-//                     decoration: InputDecoration(
-//                       border: OutlineInputBorder(),
-//                       labelText: '1',
-//                     ),
-//                     minLines: 1,
-//                     maxLines: 1,
-//                   ),
-//                 ))));
-//   }
-// }
 
 class WidgetA extends StatefulWidget {
   const WidgetA({Key? key}) : super(key: key);
